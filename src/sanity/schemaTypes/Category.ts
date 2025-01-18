@@ -1,6 +1,6 @@
 export default {
-    name: 'category',
-    title: 'category',
+    name: 'category1',
+    title: 'category1',
     type: 'document',
     fields: [
       {
@@ -16,11 +16,10 @@ export default {
         validation: (Rule:any) => Rule.required(),
       },
       {
-        name: 'image_url',
+        name: 'image',
         title: 'Image URL',
-        type: 'url',
-        validation: (Rule:any) => Rule.required().uri({ scheme: ['http', 'https'] }),
-      },
+        type: 'image',
+        },
     ],
   };
   

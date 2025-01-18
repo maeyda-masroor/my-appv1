@@ -34,7 +34,7 @@ async function uploadImageToSanity(imageUrl) {
 async function importData() {
   try {
     console.log('Fetching products from API...')
-    const response = await axios.get('https://p-e-rosy.vercel.app/api/category',{
+    const response = await axios.get('https://my-appv1.vercel.app/api/product',{
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Method': 'GET',
@@ -47,15 +47,15 @@ async function importData() {
     const category = response.data
     console.log(`Fetched ${category.length} category`)
     for (const c of category) {
-      console.log(`Processing product: ${c.title}`)
+      console.log(`Processing product: ${c.category}`)
       let imageRef = null
       if (c.image) {
         imageRef = await uploadImageToSanity(c.image)
       }
       const sanitycategory = {
-        _type: 'category',
-        name: category.name,
-        id:category.id,
+        _type: 'category1',
+        name: c.category,
+        id:c.id,
         image: imageRef ? {
           _type: 'image',
           asset: {
