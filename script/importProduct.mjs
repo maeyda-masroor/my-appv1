@@ -14,7 +14,7 @@ const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   useCdn: false,
-  token: process.env.SANITY_API_TOKEN,
+  token: process.env.TOKEN,
   apiVersion: '2021-08-31',
 });
 
@@ -39,7 +39,16 @@ async function uploadImageToSanity(imageUrl) {
 async function importData() {
   try {
     console.log('Fetching products from API...');
-    const response = await axios.get('https://my-appv1.vercel.app/api/category');
+    const response = await axios.get('https://my-appv1.vercel.app/api/category',{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Method': 'GET',
+            'Access-Control-Allow-Headers': 'Content-Type'
+    
+            
+            // Adjust as needed for your server
+        },
+    });
     const products = response.data;
     console.log(`Fetched ${products.length} products`);
 
@@ -55,19 +64,18 @@ async function importData() {
       // Map product to Sanity schema
       const sanityProduct = {
         _type: 'product',
-        name: product.title,
+        name: product.name,
         description: product.description,
         price: product.price,
         discountPercentage: 0, // Default value for imported products
         priceWithoutDiscount: product.price,
         rating: product.rating?.rate || 0,
-        ratingCount: product.rating?.count || 0,
         tags: product.category ? [product.category] : [],
-        sizes: [], // Default empty array for sizes
-        stockLevel: Math.floor(Math.random() * 100) + 1, // Random stock level
-        isFeatured: Math.random() < 0.3, // Randomly feature 30% of products
-        isTrending: Math.random() < 0.2, // Randomly set 20% of products as trending
-        isLatestProduct: Math.random() < 0.5, // Randomly set 50% of products as latest
+        color: [], // Default empty array for sizes
+        stockLevel: product.stockLevel, // Random stock level
+        isFeatured: true, // Randomly feature 30% of products
+        isTrending: true, // Randomly set 20% of products as trending
+        isLatestProduct: true, // Randomly set 50% of products as latest
         color: ['Red', 'Blue', 'Green'], // Default color array
         additionalInfo: 'Imported from external API.', // Default additional info
         image: imageRef
@@ -82,9 +90,13 @@ async function importData() {
       };
 
       // Upload product to Sanity
-      console.log('Uploading product to Sanity:', sanityProduct.name);
-      const result = await client.create(sanityProduct);
-      console.log(`Product uploaded successfully: ${result._id}`);
+      try {
+        const result = await client.create(sanityProduct);
+        console.log(`Product uploaded successfully: ${result._id}`);
+      } catch (error) {
+        console.error('Failed to upload product:', sanityProduct.name);
+        console.error('Error details:', JSON.stringify(error.response?.data, null, 2));
+      }
     }
 
     console.log('Data import completed successfully!');

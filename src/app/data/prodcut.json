@@ -2,7 +2,7 @@
       {
         "id": "1",
         "name": "Tribù Elio Chair",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/Chair (5).png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
         "price": "1200",
         "description": "A sleek outdoor chair with natural wooden elements and a modern look, perfect for patios and gardens.",
         "discountPercentage": 10,
@@ -18,7 +18,8 @@
       {
         "id": "2",
         "name": "Archer Sofa Set",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/Sofa (3).png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
+     
         "price": "4500",
         "description": "Luxurious 3-seater sofa with plush cushions and a sturdy frame, ideal for modern living rooms.",
         "discountPercentage": 15,
@@ -34,7 +35,8 @@
       {
         "id": "3",
         "name": "Luna Pendant Light",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/Light (2).png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
+     
         "price": "300",
         "description": "A stylish pendant light featuring a minimalist design, perfect for kitchens and dining rooms.",
         "discountPercentage": 5,
@@ -50,7 +52,8 @@
       {
         "id": "4",
         "name": "Nordic Dining Table",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/Table (1).png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
+     
         "price": "2300",
         "description": "A modern dining table crafted from solid oak, featuring clean lines and a durable finish.",
         "discountPercentage": 20,
@@ -66,7 +69,8 @@
       {
         "id": "5",
         "name": "Velvet Accent Chair",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/Chair (3).png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
+     
         "price": "900",
         "description": "A luxurious velvet chair with a gold metal frame, perfect for adding elegance to any room.",
         "discountPercentage": 10,
@@ -82,7 +86,8 @@
       {
         "id": "6",
         "name": "Aurora Floor Lamp",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/Lamp (1).png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
+     
         "price": "400",
         "description": "An elegant floor lamp with an adjustable arm and a brass finish, providing warm ambient light.",
         "discountPercentage": 12,
@@ -98,7 +103,8 @@
       {
         "id": "7",
         "name": "Urban Bookshelf",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/Shelf (2).png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
+     
         "price": "850",
         "description": "A modern open-shelf design with a metal frame and wooden shelves for urban living spaces.",
         "discountPercentage": 18,
@@ -114,7 +120,8 @@
       {
         "id": "8",
         "name": "Comfy Bean Bag",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/BeanBag.png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
+     
         "price": "200",
         "description": "A versatile bean bag made with soft fabric and durable stitching, perfect for casual lounging.",
         "discountPercentage": 8,
@@ -130,7 +137,8 @@
       {
         "id": "9",
         "name": "Solar Outdoor Light",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/OutdoorLight.png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
+     
         "price": "150",
         "description": "Energy-efficient solar light with a motion sensor, ideal for outdoor pathways and gardens.",
         "discountPercentage": 5,
@@ -146,7 +154,8 @@
       {
         "id": "10",
         "name": "Wooden Bar Stool",
-        "imagePath": "https://next-ecommerce-template-4.vercel.app/product/BarStool.png",
+        "imagePath": "https://res.cloudinary.com/di1kessdw/image/upload/v1734612322/Ecommerce/categories/image_1168_k7qgi2.png",
+     
         "price": "300",
         "description": "A stylish wooden bar stool with a cushioned seat and footrest, suitable for modern kitchens.",
         "discountPercentage": 7,

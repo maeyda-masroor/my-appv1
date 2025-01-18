@@ -1,6 +1,6 @@
 export default {
     name: "product",
-    title: "Product",
+    title: "product",
     type: "document",
     fields: [
       {
@@ -16,19 +16,19 @@ export default {
         },
       {
         name: "price",
-        title: "Price",
-        type: "number",
+        title: "price",
+        type: "string",
         description: "Price of the product",
       },
       {
         name: "description",
-        title: "Description",
+        title: "description",
         type: "text",
         description: "A detailed description of the product",
       },
       {
         name: "discountPercentage",
-        title: "Discount Percentage",
+        title: "discount Percentage",
         type: "number",
         description: "Discount percentage applied to the product",
       },
@@ -57,20 +57,10 @@ export default {
         description: "Available stock of the product",
       },
       {
-        name: "category",
-        title: "Category",
-        type: "string",
-        description: "Category of the product",
-        options: {
-          list: [
-            { title: "Chair", value: "Chair" },
-            { title: "Sofa", value: "Sofa" },
-            { title: "Lighting", value: "Lighting" },
-            { title: "Table", value: "Table" },
-            { title: "Storage", value: "Storage" },
-            { title: "Seating", value: "Seating" },
-          ],
-        },
+        name: 'category',
+        type: 'reference', // Reference field
+        to: [{ type: 'category1' }], // Referencing the "category" schema
+        title: 'Category',
       },
       {
         name: "rating",

@@ -1,4 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'via.placeholder.com',
+        },
+        {
+          protocol:'https',
+          hostname: 'cdn.sanity.io',
+        }
+      ],
+    }
+  };
+  
+  export default nextConfig;
