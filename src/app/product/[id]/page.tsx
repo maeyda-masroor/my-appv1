@@ -6,6 +6,7 @@ import Related from '../../../components/RelatedProduct';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Sponser from "../../../components/Sponsers";
+import ReviewForm from "@/components/ReveiwForm";
 import StarRating from "@/components/StarRating";
 import Share from '../../../../public/website/Group 205.png';
 import { useCart } from "../../context/CartContext";
@@ -110,12 +111,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     <StarRating rating={product?.rating}/>
     <p className="font-semibold text-black">{product?.price}<del className="text-pink">{product?.discount}</del></p>
     <p className="text-black">{product?.description}</p>
-    <button
-        onClick={handleAddToCart}
-        className="bg-black text-white p-4 rounded-full w-32 h-12 mt-4"
-      >
-        Add to Cart
-      </button>
+    <button className="bg-black text-white w-full h-16 mt-10" onClick={() => handleAddToCart(product)}>Add to Cart</button>
     <p>Categories </p>
     <p>Tags</p>
     <div className="flex">
@@ -159,7 +155,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       </TabPanel>
       <TabPanel>
       <h3 className='text-3xl'>
-        {product?.description}
+       <ReviewForm productId={product._id}/>
       </h3>
       </TabPanel>
       <TabPanel>

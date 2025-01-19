@@ -13,16 +13,17 @@ export default function Navbar() {
   const handleSearch = async () => {
     if (!searchQuery) return;
     setLoading(true);
+  
     try {
       const result = await client.fetch(
-        `*[_type == "product" && name match $query == ${searchQuery}] {
+        `*[_type == "product" && name match ${searchQuery}] {
           _id,
           name,
           price,
           "imageUrl": image.asset->url
         }`,
       );
-      setProducts(result);
+  setProducts(result);
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
