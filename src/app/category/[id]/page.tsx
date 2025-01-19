@@ -1,6 +1,9 @@
 "use client"
 import StarRating from "@/components/StarRating";
 import Link from "next/link";
+import { urlFor } from "../../../sanity/lib/image";
+import { useWishlist } from "../../context/wishContext";
+
 import Image from "next/image";
 import Wish from '../../../../public/website/Group 28.png';
 import { useEffect, useState } from "react";
@@ -27,7 +30,10 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(2);  // Show 2 products per page
   const [sortOrder, setSortOrder] = useState("asc");  // Default sorting: ascending
-
+  const { addToWishlist } = useWishlist();
+  const handlewishlist = (product:any) => {
+    addToWishlist({ ...product});
+   };
   // Fetch products when the component mounts
   useEffect(() => {
     async function fetchProducts() {
@@ -179,16 +185,32 @@ return (
         <div>
         {products.map((p:any) => (
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-4 mt-8 text-black lg:pr-56 lg:pl-56 shadow-md bg-white"key={p.id}>    
-          <div className="p-4"><Image src={p.image} alt="x" width={200} height={250}/></div>
+          <div className="p-4"> {p.image ? (
+                        <Image
+                          src={urlFor(p.image).url()} // Use category.image
+                          alt={p.name || "Category Image"}
+                          width={200}
+                          height={200}
+                        />
+                      ) : (
+                        <p>No image available</p>
+                      )}</div>
           <div className="p-4"><h1 className="text-lg"><Link
-              href={`/category/${params.id}/products/${p.id}`}
+              href={`/product/${p._id}`}
               className="text-yellow-600"
             >{p.name}</Link></h1>
           <div className="text-black"><p>{p.price}<span className="hover:text-pink text-black">{p.discount}</span></p><StarRating rating={p.rating}/>
           <p>{p.description}</p>
           </div>
           <div className="flex">
-            <Image src={Wish} alt="c" height={50} width={50}/>
+          <button
+                className=" text-white mt-2"
+                onClick={handlewishlist}
+              > 
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000" width="24" height="24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+              </button>
             <Image src={Heart} alt="c" height={50} width={50}/>
             <Image src={Magnify} alt="c" height={50} width={50}/>
           </div>

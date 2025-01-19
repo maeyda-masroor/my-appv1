@@ -1,7 +1,41 @@
+"use client";
+import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import Image from "next/image";
 import Search from '../../public/website/uil_search-plus.png';
+import React, { useState } from "react";
+
 export default function Navbar() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [products, setProducts] = useState<any>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const handleSearch = async () => {
+    if (!searchQuery) return;
+    setLoading(true);
+    try {
+      const result = await client.fetch(
+        `*[_type == "product" && name match $query == ${searchQuery}] {
+          _id,
+          name,
+          price,
+          "imageUrl": image.asset->url
+        }`,
+      );
+      setProducts(result);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false);
+      setIsModalOpen(true); // Open modal after search
+    }
+  };
+
+  // Close the modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setProducts([]); // Clear results when closing
+  };
     return (
       <nav className="bg-white lg:pl-56 lg:pr-56 p-4 overflow-x-hidden">
         <div
@@ -28,20 +62,65 @@ export default function Navbar() {
           {/* Search Bar */}
           <div className="search-bar flex justify-center lg:justify-end">
             
-          <div className="relative w-full lg:w-1/2">
-          {/* Icon */}
-          <span className="absolute inset-y-0 left-2 flex items-center bg-pink">
-            <Image src={Search} alt="X"/>
-          </span>
+          <div className="flex items-center bg-gray-100 rounded px-2 py-1">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search products..."
+              className="bg-transparent border-none outline-none px-2 py-1"
+            />
+            <button
+              onClick={handleSearch}
+              className="p-2 bg-pink-500 text-white rounded hover:bg-pink-600"
+            >
+              <Image src={Search} alt="Search" width={20} height={20} />
+            </button>
+          </div>
+           {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg shadow-lg w-4/5 max-h-[80vh] overflow-auto">
+            {/* Modal Header */}
+            <div className="flex justify-between items-center p-4 border-b">
+              <h2 className="text-lg font-bold">Search Results</h2>
+              <button
+                onClick={closeModal}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                ✕
+              </button>
+            </div>
 
-          {/* Input */}
-          <input
-            type="text"
-            placeholder="Search..."
-            className=" pl-6 rounded-none text-black w-full border-2 border-gray-300"
-          />
+            {/* Modal Content */}
+            <div className="p-4">
+              {loading ? (
+                <p>Loading...</p>
+              ) : products.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                  {products.map((product:any) => (
+                    <div
+                      key={product._id}
+                      className="border p-4 rounded shadow hover:shadow-lg"
+                    >
+                      <img
+                        src={product?.imageUrl}
+                        alt={product.name}
+                        className="w-full h-40 object-cover"
+                      />
+                      <h3 className="text-lg font-bold">{product.name}</h3>
+                      <p className="text-gray-500">${product.price}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p>No products found</p>
+              )}
+            </div>
+          </div>
         </div>
-        </div>
+      )}
+          </div>
         </div>
       </nav>
     );
