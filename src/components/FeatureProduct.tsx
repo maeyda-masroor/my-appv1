@@ -98,6 +98,7 @@ function Products() {
                 <h3 className="text-lg font-semibold mb-2 text-pink text-center">{product.name}</h3>
                 <p className="text-gray-600 mb-2 text-center">Code:{product.code}</p>
                 <p className="text-gray-600 mb-2 text-center font-bold">{product.price}</p>
+                <p className="text-black">{product.category}</p>
                 </div>
               </div>
             </div>

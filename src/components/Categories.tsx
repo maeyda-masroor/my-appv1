@@ -92,7 +92,7 @@ const sliderSettings = {
                       )}
                       <div className="h-auto text-center">
                         <h3 className="hover:text-pink text-gray-800">{c.name}</h3>
-                        <Link href={`/category/${c._id}`}>
+                        <Link href={`category/${c._id}`}>
                           <p className="underline decoration-2 decoration-blue">
                             Read More
                           </p>

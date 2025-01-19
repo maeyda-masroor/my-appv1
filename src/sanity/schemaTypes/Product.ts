@@ -21,6 +21,12 @@ export default {
         description: "Price of the product",
       },
       {
+        name: "price1",
+        title: "price1",
+        type: "number",
+        description: "Price of the product",
+      },
+      {
         name: "description",
         title: "description",
         type: "text",
@@ -61,6 +67,7 @@ export default {
         type: 'reference', // Reference field
         to: [{ type: 'category1' }], // Referencing the "category" schema
         title: 'Category',
+        validation: (Rule:any) => Rule.required(), // Ensure this field is always filled
       },
       {
         name: "rating",
