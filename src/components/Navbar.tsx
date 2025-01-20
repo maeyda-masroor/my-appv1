@@ -2,14 +2,43 @@
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 import Search from '../../public/website/uil_search-plus.png';
-import React, { useState } from "react";
-
+import React, { useState ,useEffect } from "react";
+import { fetchProducts } from './Search'; // Replace with your utility file path
 export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState<any>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filteredProducts, setFilteredProducts] = useState([]); // Filtered products
+  const [searchTerm, setSearchTerm] = useState(''); // User input for search
+
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    // Fetch all products on component load
+    fetchProducts().then((data) => {
+      setProducts(data);
+      setFilteredProducts(data); // Initially, all products are displayed
+    });
+  }, []);
+  const handleSearch1 = () => {
+    if (!searchTerm) return;
+    setLoading(true)
+    try{
+    const filtered = products.filter((product:any) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    
+    setFilteredProducts(filtered);
+    }
+    catch(error){
+      console.log('errir')
+    }
+    finally{
+      setLoading(false)
+      setIsModalOpen(true)
+    }
+   };
   const handleSearch = async () => {
     if (!searchQuery) return;
     setLoading(true);
@@ -64,19 +93,14 @@ export default function Navbar() {
           <div className="search-bar flex justify-center lg:justify-end">
             
           <div className="flex items-center bg-gray-100 rounded px-2 py-1">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search products..."
-              className="bg-transparent border-none outline-none px-2 py-1"
-            />
-            <button
-              onClick={handleSearch}
-              className="p-2 bg-pink-500 text-white rounded hover:bg-pink-600"
-            >
-              <Image src={Search} alt="Search" width={20} height={20} />
-            </button>
+        <input
+        type="text"
+        placeholder="Search products..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button onClick={handleSearch1}>Search
+       </button>
           </div>
            {/* Modal */}
       {isModalOpen && (
@@ -97,18 +121,23 @@ export default function Navbar() {
             <div className="p-4">
               {loading ? (
                 <p>Loading...</p>
-              ) : products.length > 0 ? (
+              ) : filteredProducts.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-                  {products.map((product:any) => (
+                  {filteredProducts.map((product:any) => (
                     <div
                       key={product._id}
                       className="border p-4 rounded shadow hover:shadow-lg"
                     >
-                      <img
-                        src={product?.imageUrl}
-                        alt={product.name}
-                        className="w-full h-40 object-cover"
-                      />
+                     {product.image ? (
+                <Image
+                src={urlFor(product.image).url()} // Use category.image
+                alt={product.name || "Category Image"}
+                width={200}
+                height={200}
+              />
+            ) : (
+              <p>No image available</p> // Fallback for missing images
+            )}
                       <h3 className="text-lg font-bold">{product.name}</h3>
                       <p className="text-gray-500">${product.price}</p>
                     </div>
