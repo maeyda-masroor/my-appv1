@@ -78,7 +78,7 @@ const sliderSettings = {
                 <p>No categories available</p> // Fallback if no categories found
               ) : (
                 products1.map((c) => (
-                  <div key={c._id} className="flex justify-center">
+                  <div key={c._id} className="flex justify-center" data-testid="product-category">
                     <div className="w-[269px] h-[345px] bg-white group relative mx-auto">
                       {c.image ? (
                         <Image

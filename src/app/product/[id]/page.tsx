@@ -18,7 +18,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);  
     const { addToCart } = useCart(); // useCart hook to access the cart context
-    
     useEffect(() => {
         const fetchProductData = async () => {
           try {
@@ -107,11 +106,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     </div>
   </div>
   <div className="p-4">
-    <h1 className="font-extrabold text-black">{product?.name}</h1>
+    <h1 className="font-extrabold text-black" data-testid="product-title">{product?.name}</h1>
     <StarRating rating={product?.rating}/>
-    <p className="font-semibold text-black">{product?.price}<del className="text-pink">{product?.discount}</del></p>
+    <p className="font-semibold text-black"data-testid="product-price">{product?.price}<del className="text-pink">{product?.discount}</del></p>
     <p className="text-black">{product?.description}</p>
-    <button className="bg-black text-white w-full h-16 mt-10" onClick={() => handleAddToCart(product)}>Add to Cart</button>
+    <button className="bg-black text-white w-full h-16 mt-10" data-testid="add-to-cart" onClick={() => handleAddToCart(product)}>Add to Cart</button>
     <p>Categories </p>
     <p>Tags</p>
     <div className="flex">

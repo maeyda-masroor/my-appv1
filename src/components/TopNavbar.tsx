@@ -10,9 +10,8 @@ import Link from "next/link";
 import { useWishlist } from "@/app/context/wishContext";
 const Navbar: React.FC = () => 
   {
-  const { cart } = useCart();
-  const totalItems = cart.items.reduce((sum, item) => sum + item.quantity, 0);
-  const { wishlist } = useWishlist();
+    const { cart, getCartTotal } = useCart();
+    const { wishlist } = useWishlist();
   const totalWishlistItems = wishlist.length;
   return (
     <header className="w-full bg-violet lg:pl-56 lg:pr-56 overflow-x-hidden">
@@ -67,8 +66,8 @@ const Navbar: React.FC = () =>
         </svg>
 
           {/* Notification Badge */}
-          <span className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full">
-            ({totalItems})
+          <span className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-full" data-testid="cart-icon">
+            ({getCartTotal()})
           </span>
         </div></li></Link>
           </ul>

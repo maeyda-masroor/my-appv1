@@ -97,9 +97,10 @@ export default function Navbar() {
         type="text"
         placeholder="Search products..."
         value={searchTerm}
+        data-testid="search-input"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button onClick={handleSearch1}>Search
+      <button onClick={handleSearch1} data-testid="search-button">Search
        </button>
           </div>
            {/* Modal */}
@@ -122,7 +123,7 @@ export default function Navbar() {
               {loading ? (
                 <p>Loading...</p>
               ) : filteredProducts.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4" data-testid="search-results-header" >
                   {filteredProducts.map((product:any) => (
                     <div
                       key={product._id}
