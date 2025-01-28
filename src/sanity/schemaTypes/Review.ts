@@ -1,7 +1,7 @@
 // schemas/review.js
 export default {
     name: 'review',
-    title: 'Review',
+    title: 'review',
     type: 'document',
     fields: [
       {
