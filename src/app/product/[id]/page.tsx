@@ -13,6 +13,7 @@ import { useCart } from "../../context/CartContext";
 import React, { useState, useEffect } from "react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import Scorecard from "@/components/Scorecard";
 export default function ProductPage({ params }: { params: { id: string } }) {
     const [product, setProduct] = useState<any>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -154,7 +155,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       </TabPanel>
       <TabPanel>
       <h3 className='text-3xl'>
+      <div>
        <ReviewForm productId={product._id}/>
+       <Scorecard/>
+       </div>
       </h3>
       </TabPanel>
       <TabPanel>
