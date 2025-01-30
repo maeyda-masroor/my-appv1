@@ -24,7 +24,7 @@ export default function CheckoutPage() {
       products: cart.items,
       total: getCartTotal(),
     };
-
+    console.log("🛒 Cart Items in Checkout:", cart.items); // Debugging
     const response = await fetch("/api/payment", {
       method: "POST",
       body: JSON.stringify(order),
