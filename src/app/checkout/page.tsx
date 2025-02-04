@@ -1,6 +1,5 @@
 "use client";
 
-"use client";
 
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
@@ -18,12 +17,11 @@ export default function CheckoutPage() {
       alert("Please fill in all fields.");
       return;
     }
-
     const order = {
       user,
-      products: cart.items,
+      products :cart.items,
       total: getCartTotal(),
-    };
+    };    
     console.log("🛒 Cart Items in Checkout:", cart.items); // Debugging
     const response = await fetch("/api/payment", {
       method: "POST",
@@ -52,7 +50,7 @@ export default function CheckoutPage() {
           {cart.items.map((item) => (
             <div key={item.id} className="flex justify-between p-2 border-b">
               <span>{item.name} (x{item.quantity})</span>
-              <span>${item.price * item.quantity}</span>
+              <span>${item.price1 * item.quantity}</span>
               <button onClick={() => removeFromCart(item.id)} className="text-red-500">
                 Remove
               </button>

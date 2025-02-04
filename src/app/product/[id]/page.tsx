@@ -26,7 +26,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               _id,
               name,
               description,
-              price,
+              price1,
               image,
               category-> { _id, name }
             }[0]`;

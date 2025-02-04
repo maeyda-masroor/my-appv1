@@ -11,11 +11,11 @@ export async function POST(req: Request) {
       customerEmail: order.user.email,
       customerAddress: order.user.address,
       total: order.total,
-      /*product: order.products.map((p: any) => ({
+      product: order.products.map((p: any) => ({
          // ✅ Generates a unique key for each item
         product: { _type: "reference", _ref: p._id }, // Correct reference to a product in Sanity
         quantity: p.quantity, // Quantity of the product ordered
-      })),*/
+      }))
     });
 
     return NextResponse.json(newOrder, { status: 201 });

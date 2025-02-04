@@ -16,12 +16,12 @@ const { cart, removeFromCart ,updateCartItem} = useCart();
 
     // Calculate total based on item price * quantity
     cart.items.forEach((item) => {
-      total += item.price * item.quantity;
+      total += item.price1 * item.quantity;
     });
 
     // Apply Rs 300 charge if any item total (price * quantity) is under Rs 150
     cart.items.forEach((item) => {
-      if (item.price * item.quantity <= 150) {
+      if (item.price1 * item.quantity <= 150) {
         total += 300; // Add Rs 300 charge
       }
     });

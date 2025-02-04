@@ -8,7 +8,7 @@ export default {
     { name: "customerAddress", type: "string", title: "Customer Address" },
     { name: "total", type: "number", title: "Total Amount" },
     {
-      name: "product",
+      name: "cart",
       type: "array",
       title: "Ordered Products",
       of: [
@@ -18,10 +18,9 @@ export default {
             { 
               name: "product", 
               type: "reference", 
-              title: "Product", 
+              title: "Cart", 
               to: [{ type: "product" }] // Ensure this is set
             },
-            { name: "quantity", type: "number", title: "Quantity" },
           ],
         },
       ],
