@@ -100,16 +100,6 @@ interface CartItem {
   image: string; // ✅ Convert Sanity image object to URL
   price: string; // ✅ Using "price" as string (since it's a string in schema)
   price1: number; // ✅ Using "price1" as number (for calculations)
-  description: string; // ✅ Detailed product description
-  discountPercentage: number; // ✅ Discount percentage applied
-  isFeatured: boolean; // ✅ Whether the product is featured
-  isTrending: boolean; // ✅ Whether the product is trending
-  isLatestProduct: boolean; // ✅ Whether it's the latest product
-  stockLevel: number; // ✅ Available stock quantity
-  category: string; // ✅ Reference to category (_id or title)
-  rating: number; // ✅ Rating out of 5
-  color: string[]; // ✅ Available colors
-  additionalInfo: string; // ✅ Additional product details
   quantity: number; // ✅ Quantity added to the cart
 }
 

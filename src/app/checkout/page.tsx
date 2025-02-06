@@ -19,7 +19,11 @@ export default function CheckoutPage() {
     }
     const order = {
       user,
-      products :cart.items,
+      products:cart.items.map((item) => ({
+        productTitle: item.name,
+        price: item.price1,
+        quantity: item.quantity,
+      })),
       total: getCartTotal(),
     };    
     console.log("🛒 Cart Items in Checkout:", cart.items); // Debugging

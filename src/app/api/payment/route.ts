@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { client } from "../../../sanity/lib/client";
-
+import { v4 as uuidv4 } from 'uuid';
 export async function POST(req: Request) {
   const order = await req.json();
 
@@ -11,11 +11,12 @@ export async function POST(req: Request) {
       customerEmail: order.user.email,
       customerAddress: order.user.address,
       total: order.total,
-      product: order.products.map((p: any) => ({
-         // ✅ Generates a unique key for each item
-        product: { _type: "reference", _ref: p._id }, // Correct reference to a product in Sanity
-        quantity: p.quantity, // Quantity of the product ordered
-      }))
+      products: order.products.map((item: { productTitle: string, price: number, quantity: number }) => ({
+        _key: uuidv4(),
+        productTitle: item.productTitle,
+        price: item.price,
+        quantity: item.quantity,
+      })),
     });
 
     return NextResponse.json(newOrder, { status: 201 });

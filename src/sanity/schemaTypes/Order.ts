@@ -8,18 +8,27 @@ export default {
     { name: "customerAddress", type: "string", title: "Customer Address" },
     { name: "total", type: "number", title: "Total Amount" },
     {
-      name: "cart",
-      type: "array",
-      title: "Ordered Products",
+      name: 'products',
+      title: 'Products',
+      type: 'array',
       of: [
         {
-          type: "object",
+          type: 'object',
           fields: [
-            { 
-              name: "product", 
-              type: "reference", 
-              title: "Cart", 
-              to: [{ type: "product" }] // Ensure this is set
+            {
+              name: 'productTitle',
+              title: 'Product Title',
+              type: 'string',
+            },
+            {
+              name: 'price',
+              title: 'Price',
+              type: 'number',
+            },
+            {
+              name: 'quantity',
+              title: 'Quantity',
+              type: 'number',
             },
           ],
         },
